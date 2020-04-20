@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import { randomBytes } from 'crypto';
 import { diskStorage } from 'multer';
 
-const tmpFolder = resolve(__dirname, '..', '..', 'tmp', 'upload');
+const tmpFolder = resolve(__dirname, '..', '..', 'tmp');
 
 export default {
   directory: tmpFolder,
