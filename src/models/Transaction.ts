@@ -7,6 +7,9 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+
+import { ColumnNumericTransformer } from '../utils/ColumnNumericTransformer';
+
 import Category from './Category';
 
 @Entity('transactions')
@@ -20,15 +23,19 @@ class Transaction {
   @Column()
   type: 'income' | 'outcome';
 
-  @Column()
+  @Column('numeric', {
+    precision: 10,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
+  })
   value: number;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, category => category.transaction, { eager: true })
   @JoinColumn({ name: 'category_id' })
-  category: Category | null;
+  category: Category;
 
   @Column()
-  category_id: string | null;
+  category_id: string;
 
   @CreateDateColumn()
   created_at: Date;

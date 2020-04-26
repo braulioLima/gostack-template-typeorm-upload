@@ -24,9 +24,9 @@ class TransactionsRepository extends Repository<Transaction> {
             : accountBalance.total + transaction.value,
       }),
       {
-        income: 0,
-        outcome: 0,
-        total: 0,
+        income: 0.00,
+        outcome: 0.00,
+        total: 0.00,
       },
     );
 
